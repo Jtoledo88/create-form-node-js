@@ -1,22 +1,29 @@
-# Create un formulario en Node.js 
+### Formularios en NodeJS
 
-Tecnologías: HTML, CSS, JS, Bootstrap, Node, express or express-generator.
+¿Qué son formularios?
 
-Vamos a crear un formulario que se rederize desde node/express utilizando el manejado de templates de node `Embedded JavaScript templates`.
-La idea es crear con Bootstrap renderizar los diferentes elementos dentro del diseñor y pasar los datos a mostrar dinamicamente, todos los elementos se deven cargar en una vista principal llamada home.ejs
+Los formularios web son uno de los principales puntos de interacción entre un usuario y un sitio web o aplicación. Los formularios permiten a los usuarios la introducción de datos, que generalmente se envían a un servidor web para su procesamiento y almacenamiento
 
 
-## 🌱  Cómo iniciar este proyecto
+### Utilizando express
 
-a) Configura express desde cero.
+Definimos una ruta utiliando el metodo GET el cual retornara nuestra vista del formulario 
 
-b) Crear el proyecto usando express-generator.
+    app.get('/registro', (request, response) => {
+        response.send('form');
+    })
 
-💡 Importante: guardar tu código en tu nuevo repositorio usando `add`, `commit` y `push`.
 
-## Estrategia
+Definimos una ruta utiliando el metodo POST el cual recibira toda la informacion sumistrada a través del formulario. Esta informacion es recibida en el objeto request el cual tiene un atributo body que es donde estan todos los campos que vienen de nuestro formulario.
 
-Tomate unos minutos para analizar 🤯 la imagen y dibuja tu estrategia sobre ella, identifica los componentes que vas a utilizar de bootstrap:
+    app.post('/registro', (request, response) => {
+        console.log(request.body)
+        console.log(request.files)
+    })
 
-Una vez terminada la estrategia puedes empezar a codificar, 
-¡Empieza a programar 🎊!
+1. ***request.body***: trae toda la informacion de nuestros inputs excepto de tipo "files"
+2. ***request.files***: trae toda la informacion de archivos adjuntados en nuestro formulario por ejemplo: pdf, imagenes, documentos
+
+Nota: es importante resaltar que todos nuestros campos obligatoriamente tienen que tener el atributo ***name*** defindo en la etiqueta.
+
+    Ejemplo: <input type="text" name="name" placeholder="Insert name">
